@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b12">
+  <meta name="description" content="Учебная афиша концертов в Санкт-Петербурге с интерактивной схемой мест.">
+  <title>NEON STAGE — концерты Петербурга</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Neon Stage — на главную"><span class="brand-mark">N<span>✳</span></span><span>NEON<span class="brand-muted">STAGE</span></span></a>
+    <nav aria-label="Основная навигация"><a class="nav-link active" href="#events">Афиша <span>06</span></a><a class="nav-link" href="#booking">Выбор мест</a><a class="nav-link" href="#my-bookings">Мои билеты <span id="booking-count">0</span></a></nav>
+    <div class="city-pill"><span class="live-dot"></span>САНКТ-ПЕТЕРБУРГ</div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-line"></span>ТВОЯ НОЧЬ. ТВОЙ ЗВУК. ТВОЙ ГОРОД.</p><h1 id="hero-title">ГОРОД<br>НЕ <span class="outline-text">СПИТ</span><span class="hero-star">✳</span></h1><p class="hero-description">Петербург звучит громче.<br>Выбирай концерт и занимай своё место.</p><a class="hero-cta" href="#events">СМОТРЕТЬ АФИШУ <span>↘</span></a></div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-ring ring-a"></div><div class="hero-ring ring-b"></div><div class="hero-disc"><span class="disc-label">SPB<br>LIVE</span></div><div class="hero-sticker">ЖИВОЙ<br>ЗВУК<br><span>✳</span></div><div class="hero-caption">59° 56' 24.12" N<br>30° 18' 00.00" E</div><div class="hero-number">2025<span>—</span>26</div></div>
+      <div class="hero-bottom"><span>НЕЗАВИСИМАЯ АФИША ПЕТЕРБУРГА</span><span class="scroll-cue">ЛИСТАЙ ВНИЗ <i>↓</i></span></div>
+    </section>
+
+    <section class="events-section section-wrap" id="events">
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>ВЫБИРАЙ СВОЙ ВЕЧЕР</p><h2>БЛИЖАЙШИЕ<br><span class="outline-text">КОНЦЕРТЫ</span></h2></div><div class="section-side"><span class="mono">АФИША / 001—006</span><p>Шесть артистов. Один город.<br>Твоя история начинается здесь.</p></div></div>
+      <div class="filters" aria-label="Фильтры концертов"><label class="filter-control"><span>ЖАНР</span><select id="genre-filter" aria-label="Фильтр по жанру"><option value="all">Все жанры</option></select><b>⌄</b></label><label class="filter-control"><span>ДО</span><select id="price-filter" aria-label="Максимальная цена билета"><option value="all">Любая цена</option><option value="1500">1 500 ₽</option><option value="2500">2 500 ₽</option><option value="3500">3 500 ₽</option><option value="5000">5 000 ₽</option></select><b>⌄</b></label><button class="reset-filter" id="reset-filters" type="button">СБРОСИТЬ <span>↻</span></button><span class="results-count" id="results-count" aria-live="polite">6 СОБЫТИЙ</span></div>
+      <div class="event-grid" id="event-grid"></div>
+      <p class="empty-events hidden" id="empty-events">По этим фильтрам концертов нет. Попробуй изменить условия.</p>
+    </section>
+
+    <section class="booking-section section-wrap" id="booking">
+      <div class="section-heading compact-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>СОБЕРИ СВОЙ БИЛЕТ</p><h2>ТВОЁ <span class="accent-text">МЕСТО</span><br>В ПЕРВОМ РЯДУ</h2></div><div class="section-side"><span class="mono">СХЕМА ЗАЛА / 50 VIP-МЕСТ</span><p>Танцпол без нумерации,<br>VIP-места по бокам и сзади.</p></div></div>
+      <div class="booking-shell">
+        <div class="hall-panel"><div class="hall-topline"><span class="mono">ЗАЛ · <b id="hall-name">—</b></span><span class="mono" id="hall-date">—</span></div>
+          <div class="seat-toolbar"><label class="filter-control small-filter"><span>СЕКТОР</span><select id="sector-filter" aria-label="Фильтр мест по сектору"><option value="all">Все сектора</option><option value="left">Левый VIP</option><option value="right">Правый VIP</option><option value="back">VIP сзади</option></select><b>⌄</b></label><label class="filter-control small-filter"><span>ЦЕНА ДО</span><select id="seat-price-filter" aria-label="Фильтр VIP-мест по цене"><option value="all">Любая цена</option><option value="3500">3 500 ₽</option><option value="4500">4 500 ₽</option><option value="5500">5 500 ₽</option></select><b>⌄</b></label></div>
+          <div class="seat-map" id="seat-map" aria-label="Схема танцпола и VIP-мест"></div>
+          <div class="hall-stage"><div class="stage-lights"><i></i><i></i><i></i><i></i><i></i></div><span>СЦЕНА</span></div>
+          <div class="legend"><span><i class="legend-seat free"></i>Свободно</span><span><i class="legend-seat selected"></i>Выбрано</span><span><i class="legend-seat occupied"></i>Занято</span></div>
+        </div>
+        <aside class="ticket-panel" aria-label="Выбранный концерт и билет"><p class="eyebrow"><span class="eyebrow-line"></span>ТВОЙ БИЛЕТ</p><div id="selected-event-card" class="selected-event-card"></div>
+          <div class="seat-list-heading"><span>ДОСТУПНЫЕ БИЛЕТЫ</span><span id="seat-result-count">50 VIP + ТАНЦПОЛ</span></div><div class="seat-list" id="seat-list"></div>
+          <div class="checkout"><div class="checkout-row"><span>Выбрано билетов</span><b id="selected-count">0</b></div><div class="checkout-row"><span>К оплате</span><b class="total" id="total-price">0 ₽</b></div><button class="confirm-button" id="confirm-booking" type="button">ЗАБРОНИРОВАТЬ <span>↗</span></button><p class="form-message" id="form-message" role="status" aria-live="polite">Выбери билеты на танцпол или VIP-места</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="my-bookings-section section-wrap" id="my-bookings"><div class="bookings-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>СОХРАНЁННЫЕ БИЛЕТЫ</p><h2>МОИ <span class="accent-text">БИЛЕТЫ</span></h2></div><button class="text-button hidden" id="reset-demo" type="button">СБРОСИТЬ ДЕМО <span>↻</span></button></div><div class="bookings-list" id="bookings-list"></div><p class="demo-note"><span>✳</span> Учебное демо: бронирования сохраняются только в этом браузере. Оплата не производится.</p></section>
+  </main>
+  <footer class="footer"><a class="brand" href="#top"><span class="brand-mark">N<span>✳</span></span><span>NEON<span class="brand-muted">STAGE</span></span></a><span>СДЕЛАНО ДЛЯ НОЧНОГО ПЕТЕРБУРГА</span><span class="mono">ДЕМО · 2025—26</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
